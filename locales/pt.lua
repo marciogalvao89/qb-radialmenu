@@ -18,6 +18,9 @@ local Translations = {
         already_in_trunk = "Já estás dentro da bagageira",
         someone_in_trunk = "Já existe alguém na bagageira"
     },
+    progress = {
+        flipping_car = "A virar o veículo.."
+    },
     success = {
         extra_activated = "Extra %{extra} ativado",
         entered_trunk = "Entraste na bagageira"
