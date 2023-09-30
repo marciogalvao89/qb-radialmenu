@@ -56,6 +56,10 @@ local function RemoveOption(id)
     DynamicMenuItems[id] = nil
 end
 
+local function RemoveSubOption(id, secondid)
+    DynamicMenuItems[id][secondid] = nil
+end
+
 local function SetupJobMenu()
     local JobInteractionCheck = PlayerData.job.name
     if PlayerData.job.type == "leo" then JobInteractionCheck = "police" end
@@ -90,8 +94,8 @@ local function SetupVehicleMenu()
     local ped = PlayerPedId()
     local Vehicle = GetVehiclePedIsIn(ped) ~= 0 and GetVehiclePedIsIn(ped) or getNearestVeh()
     if Vehicle ~= 0 then
-        VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleDoors
-        if Config.EnableExtraMenu then VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleExtras end
+        --VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleDoors
+        --if Config.EnableExtraMenu then VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleExtras end
 
         if not IsVehicleOnAllWheels(Vehicle) then
             VehicleMenu.items[#VehicleMenu.items+1] = {
@@ -104,7 +108,7 @@ local function SetupVehicleMenu()
             }
         end
 
-        if IsPedInAnyVehicle(ped) then
+        --[[if IsPedInAnyVehicle(ped) then
             local seatIndex = #VehicleMenu.items+1
             VehicleMenu.items[seatIndex] = deepcopy(Config.VehicleSeats)
 
@@ -127,7 +131,17 @@ local function SetupVehicleMenu()
                     shouldClose = false,
                 }
             end
-        end
+        end --]]
+		
+		-- BIT-VEHCONTROL MARCIO
+		 VehicleMenu.items[#VehicleMenu.items+1] = {
+                id = 'vehicle-flip',
+                title = 'Menu do Carro',
+                icon = 'car-burst',
+                type = 'command',
+                event = 'vehcontrol',
+                shouldClose = true
+            }
     end
 
     if #VehicleMenu.items == 0 then
@@ -409,3 +423,4 @@ end)
 
 exports('AddOption', AddOption)
 exports('RemoveOption', RemoveOption)
+exports('RemoveSubOption', RemoveSubOption, SecondID)

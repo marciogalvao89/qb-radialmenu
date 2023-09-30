@@ -740,7 +740,7 @@ Config.TrunkClasses = {
     [21] = {allowed = true, x = 0.0, y = -1.0, z = 0.25} -- Trains
 }
 
-Config.ExtrasEnabled = true
+Config.ExtrasEnabled = false
 
 Config.Commands = {
     ["top"] = {
